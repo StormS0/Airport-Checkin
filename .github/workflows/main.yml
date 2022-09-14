@@ -1,0 +1,42 @@
+name: "Airport Checkin"
+
+on:
+  schedule:
+    - cron: "0 22 * * *"  # scheduled at 06:00 (UTC+8) everyday
+  workflow_dispatch:
+
+env:
+  RUN_ENV: 'prod'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    # if: github.ref == 'refs/heads/master'
+
+    steps:
+      - name: Checkout master
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          # ref: master
+
+      - name: Set up python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+
+      - name: Random sleep
+        if: github.event_name == 'schedule'
+        run: sleep $(shuf -i 10-300 -n 1)
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Run sign
+        env:
+          group_id: ${{ secrets.group_id }}
+          api_id: ${{ secrets.api_id }}
+          api_hash: ${{ secrets.api_hash }}
+        run: |
+          python3 ./gitmain2.py 
