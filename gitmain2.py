@@ -11,7 +11,7 @@ sp_group_id = group_id.split(",")
 
 for num in range(len(api_id)):
     session_name[num] = "id_" + str(session_name[num])
-    client = TelegramClient('session_name', api_id[num], api_hash[num] ,proxy=("socks5", '127.0.0.1', 1081))
+    client = TelegramClient('session_name', api_id[num], api_hash[num])
     client.start()
     for useid in sp_group_id:
         real_id, peer_type = utils.resolve_id(useid)
