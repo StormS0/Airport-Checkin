@@ -10,7 +10,6 @@ api_hash = os.environ.get('api_hash')
 sp_group_id = group_id.split(",")
 
 for num in range(len(api_id)):
-    session_name[num] = "id_" + str(session_name[num])
     client = TelegramClient('session_name', api_id[num], api_hash[num])
     client.start()
     for useid in sp_group_id:
