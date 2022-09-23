@@ -16,6 +16,5 @@ for num in range(len(api_id)):
         real_id, peer_type = utils.resolve_id(int(useid))
         message = client.send_message(peer_type(real_id), '签到')    #第一项是机器人ID，第二项是发送的文字
 client.disconnect()
-time.sleep(5)
-client.run_until_disconnected()
+
 
