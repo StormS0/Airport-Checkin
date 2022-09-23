@@ -13,7 +13,8 @@ client.start()
 for num in range(len(api_id)):
     for useid in sp_group_id:
         real_id, peer_type = utils.resolve_id(int(useid))
-        message = client.send_message(peer_type(real_id), '签到')    #第一项是机器人ID，第二项是发送的文字
+        #message = client.send_message(peer_type(real_id), '签到')    #第一项是机器人ID，第二项是发送的文字
+        print("qiandao")
 client.disconnect()
 
 
